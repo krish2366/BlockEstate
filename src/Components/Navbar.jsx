@@ -1,99 +1,90 @@
-import React from 'react';
-import { useState } from 'react';
-import { useEffect } from 'react';
-import { useRef } from 'react';
-
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
-    const navLinks = [
-        { name: 'Home', path: '/' },
-        { name: 'Products', path: '/' },
-        { name: 'Contact', path: '/' },
-        { name: 'About', path: '/' },
-    ];
 
-    const ref = useRef(null)
-
-    const [isScrolled, setIsScrolled] = useState(false);
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-    useEffect(() => {
-        const handleScroll = () => {
-            setIsScrolled(ref.current.scrollTop > 10);
-        };
-        ref.current.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
-
-    return (
-        <div ref={ref} className="h-88 md:h-64 overflow-y-scroll bg-red-500">
-            <p className="w-10 h-[500px]"></p>
-            <nav className={`fixed top-0 left-0 bg-indigo-500 w-full flex items-center justify-between px-4 md:px-16 lg:px-24 xl:px-32 transition-all duration-500 z-50 ${isScrolled ? "bg-white/80 shadow-md text-gray-700 backdrop-blur-lg py-3 md:py-4" : "py-4 md:py-6"}`}>
-
-                {/* Logo */}
-                <a href="/" className="flex items-center gap-2 text-3xl font-bold text-gray-800">
-                    BlockEstate
-                </a>
-
-                {/* Desktop Nav */}
-                <div className="hidden md:flex items-center gap-4 lg:gap-8">
-                    {navLinks.map((link, i) => (
-                        <a key={i} href={link.path} className={`group flex flex-col gap-0.5 ${isScrolled ? "text-gray-700" : "text-white"}`}>
-                            {link.name}
-                            <div className={`${isScrolled ? "bg-gray-700" : "bg-white"} h-0.5 w-0 group-hover:w-full transition-all duration-300`} />
-                        </a>
-                    ))}
-                    <button className={`border px-4 py-1 text-sm font-light rounded-full cursor-pointer ${isScrolled ? 'text-black' : 'text-white'} transition-all`}>
-                        New Launch
-                    </button>
-                </div>
-
-                {/* Desktop Right */}
-                <div className="hidden md:flex items-center gap-4">
-                    <svg className={`h-6 w-6 ${isScrolled ? "invert" : ""}`} fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                        <circle cx="11" cy="11" r="8" />
-                        <line x1="21" y1="21" x2="16.65" y2="16.65" />
-                    </svg>
-                    <button className="bg-black text-white px-8 py-2.5 rounded-full ml-4 transition-all duration-500">
-                        Login
-                    </button>
-                </div>
-
-                {/* Mobile Menu Button */}
-                <div className="flex items-center gap-3 md:hidden">
-                    <svg onClick={() => setIsMenuOpen(!isMenuOpen)} className={`h-6 w-6 cursor-pointer ${isScrolled ? "invert" : ""}`} fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                        <line x1="4" y1="6" x2="20" y2="6" />
-                        <line x1="4" y1="12" x2="20" y2="12" />
-                        <line x1="4" y1="18" x2="20" y2="18" />
-                    </svg>
-                </div>
-
-                {/* Mobile Menu */}
-                <div className={`fixed top-0 left-0 w-full h-screen bg-white text-base flex flex-col md:hidden items-center justify-center gap-6 font-medium text-gray-800 transition-all duration-500 ${isMenuOpen ? "translate-x-0" : "-translate-x-full"}`}>
-                    <button className="absolute top-4 right-4" onClick={() => setIsMenuOpen(false)}>
-                        <svg className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                            <line x1="18" y1="6" x2="6" y2="18" />
-                            <line x1="6" y1="6" x2="18" y2="18" />
-                        </svg>
-                    </button>
-
-                    {navLinks.map((link, i) => (
-                        <a key={i} href={link.path} onClick={() => setIsMenuOpen(false)}>
-                            {link.name}
-                        </a>
-                    ))}
-
-                    <button className="border px-4 py-1 text-sm font-light rounded-full cursor-pointer transition-all">
-                        New Launch
-                    </button>
-
-                    <button className="bg-black text-white px-8 py-2.5 rounded-full transition-all duration-500">
-                        Login
-                    </button>
-                </div>
-            </nav>
+  return (
+    <div>
+      <nav className="h-[70px] relative w-full px-6 md:px-16 lg:px-24 xl:px-32 flex items-center justify-between z-20 bg-white text-gray-700 shadow-[0px_4px_25px_0px_#0000000D] transition-all">
+        <a href="#" className="text-3xl font-bold text-gray-800">
+          BlockEstate
+        </a>
+        <ul className="md:flex hidden items-center gap-10">
+          <li>
+            <a className="hover:text-gray-500/80 transition" href="#">
+              Home
+            </a>
+          </li>
+          <li>
+            <a className="hover:text-gray-500/80 transition" href="#">
+              Services
+            </a>
+          </li>
+          <li>
+            <a className="hover:text-gray-500/80 transition" href="#">
+              Portfolio
+            </a>
+          </li>
+          <li>
+            <a className="hover:text-gray-500/80 transition" href="#">
+              Pricing
+            </a>
+          </li>
+        </ul>
+        <button
+          type="button"
+          className="bg-white text-gray-600 border border-gray-300 md:inline hidden text-sm hover:bg-gray-50 active:scale-95 transition-all w-24 h-11 rounded-full"
+        >
+          Login
+        </button>
+        <button
+          aria-label="menu-btn"
+          type="button"
+          className="menu-btn inline-block md:hidden active:scale-90 transition"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width={30}
+            height={30}
+            viewBox="0 0 30 30"
+            fill="#000"
+          >
+            <path d="M 3 7 A 1.0001 1.0001 0 1 0 3 9 L 27 9 A 1.0001 1.0001 0 1 0 27 7 L 3 7 z M 3 14 A 1.0001 1.0001 0 1 0 3 16 L 27 16 A 1.0001 1.0001 0 1 0 27 14 L 3 14 z M 3 21 A 1.0001 1.0001 0 1 0 3 23 L 27 23 A 1.0001 1.0001 0 1 0 27 21 L 3 21 z" />
+          </svg>
+        </button>
+        <div className="mobile-menu absolute top-[70px] left-0 w-full bg-white p-6 hidden md:hidden">
+          <ul className="flex flex-col space-y-4 text-lg">
+            <li>
+              <a href="#" className="text-sm">
+                Home
+              </a>
+            </li>
+            <li>
+              <a href="#" className="text-sm">
+                Services
+              </a>
+            </li>
+            <li>
+              <a href="#" className="text-sm">
+                Portfolio
+              </a>
+            </li>
+            <li>
+              <a href="#" className="text-sm">
+                Pricing
+              </a>
+            </li>
+          </ul>
+          <button
+            type="button"
+            className="bg-white text-gray-600 border border-gray-300 mt-6 text-sm hover:bg-gray-50 active:scale-95 transition-all w-40 h-11 rounded-full"
+          >
+            Login
+          </button>
         </div>
-    );
-}
+      </nav>
+    </div>
+  );
+};
 
 export default Navbar;
