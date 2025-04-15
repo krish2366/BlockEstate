@@ -3,19 +3,20 @@ import toast from "react-hot-toast";
 import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const LoginForm = () => {
-  const [username, setName] = useState("");
+const SignUp = () => {
+  const [username,setUsername] = useState("");
+  const [ownerWalletAddress,setOwnerWalletAddress] = useState("")
   const [password, setPassword] = useState("");
+  
 
   const navigate = useNavigate();
 
   const onHandleSubmit = async (e) => {
     try {
-      // console.log(email + " " + password);
+    //   console.log(username + " " + ownerWalletAddress+" "+password);
       e.preventDefault();
 
-      const token = await axios.post('http://localhost:8080/User/login',{username,password})
-      console.log(token)
+      const {token} = await axios.post('http://localhost:8080/User/register',{username,ownerWalletAddress,password})
       if(token.data){
         toast.success("login success")
         console.log("login success")
@@ -25,7 +26,6 @@ const LoginForm = () => {
         console.log("login failed")
       }
     } catch (error) {
-      console.log("error")
       toast.error(error.message);
     }
     
@@ -34,9 +34,37 @@ const LoginForm = () => {
   return (
     <div className="flex items-center justify-center mt-20">
       <form onSubmit={onHandleSubmit} className="max-w-96 w-full text-center border border-gray-300/60 rounded-2xl px-8 bg-white">
-        <h1 className="text-gray-900 text-3xl mt-10 font-medium">Login</h1>
-        <p className="text-gray-500 text-sm mt-2">Please sign in to continue</p>
+        <h1 className="text-gray-900 text-3xl mt-10 font-medium">Sign Up</h1>
+        {/* <p className="text-gray-500 text-sm mt-2">Please sign in to continue</p> */}
         <div className="flex items-center w-full mt-10 bg-white border border-gray-300/80 h-12 rounded-full overflow-hidden pl-6 gap-2">
+          {/* <svg
+            width="16"
+            height="11"
+            viewBox="0 0 16 11"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fillRule="evenodd"
+              clipRule="evenodd"
+              d="M0 .55.571 0H15.43l.57.55v9.9l-.571.55H.57L0 10.45zm1.143 1.138V9.9h13.714V1.69l-6.503 4.8h-.697zM13.749 1.1H2.25L8 5.356z"
+              fill="#6B7280"
+            />
+          </svg> */}
+          <p>@</p>
+          <input
+            type="text"
+            value={username}
+            onChange={(e)=>setUsername(e.target.value)}
+            placeholder="user name"
+            className="bg-transparent text-gray-500 placeholder-gray-500 outline-none text-sm w-full h-full"
+            required
+          />
+        </div>
+
+        {/* wallet */}
+
+        <div className="flex items-center w-full mt-6 bg-white border border-gray-300/80 h-12 rounded-full overflow-hidden pl-6 gap-2">
           <svg
             width="16"
             height="11"
@@ -51,17 +79,18 @@ const LoginForm = () => {
               fill="#6B7280"
             />
           </svg>
+          
           <input
             type="text"
-            value={username}
-            onChange={(e)=>setName(e.target.value)}
-            placeholder="User name"
+            value={ownerWalletAddress}
+            onChange={(e)=>setOwnerWalletAddress(e.target.value)}
+            placeholder="wallet address"
             className="bg-transparent text-gray-500 placeholder-gray-500 outline-none text-sm w-full h-full"
             required
           />
         </div>
 
-        <div className="flex items-center mt-4 w-full bg-white border border-gray-300/80 h-12 rounded-full overflow-hidden pl-6 gap-2">
+        <div className="flex items-center mt-6 w-full bg-white border border-gray-300/80 h-12 rounded-full overflow-hidden pl-6 gap-2">
           <svg
             width="13"
             height="17"
@@ -83,22 +112,22 @@ const LoginForm = () => {
             required
           />
         </div>
-        <div className="mt-5 text-left text-indigo-500">
+        {/* <div className="mt-5 text-left text-indigo-500">
           <a className="text-sm" href="#">
             Forgot password?
           </a>
-        </div>
+        </div> */}
 
         <button
           type="submit"
           className="mt-2 w-full h-11 rounded-full text-white bg-indigo-500 hover:opacity-90 transition-opacity"
         >
-          Login
+          Sign Up
         </button>
         <p className="text-gray-500 text-sm mt-3 mb-11">
-          Don’t have an account?{" "}
-          <NavLink className="text-indigo-500" to="/signUp">
-            Sign up
+          Already have a account?{" "}
+          <NavLink to="/login" className="text-indigo-500" >
+            Login
           </NavLink>
         </p>
       </form>
@@ -106,4 +135,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default SignUp;
