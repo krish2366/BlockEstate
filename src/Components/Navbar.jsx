@@ -5,29 +5,29 @@ const Navbar = () => {
   return (
     <div>
       <nav className="h-[70px] relative w-full px-6 md:px-16 lg:px-24 xl:px-32 flex items-center justify-between z-20 bg-white text-gray-700 shadow-[0px_4px_25px_0px_#0000000D] transition-all">
-        <a href="#" className="text-3xl font-bold text-gray-800">
+        <Link href="#" className="text-3xl font-bold text-gray-800">
           BlockEstate
-        </a>
+        </Link>
         <ul className="md:flex hidden items-center gap-10">
           <li>
-            <a className="hover:text-gray-500/80 transition" href="#">
+            <Link className="hover:text-gray-500/80 transition" href="/">
               Home
-            </a>
+            </Link>
           </li>
           <li>
-            <a className="hover:text-gray-500/80 transition" href="#">
+            <Link className="hover:text-gray-500/80 transition" href="/registerland">
               Register Land
-            </a>
+            </Link>
           </li>
           <li>
-            <a className="hover:text-gray-500/80 transition" href="#">
+            <Link className="hover:text-gray-500/80 transition" href="transferland">
               Transfer Land
-            </a>
+            </Link>
           </li>
           <li>
-            <a className="hover:text-gray-500/80 transition" href="#">
+            <Link className="hover:text-gray-500/80 transition" href="landdetails">
               Land Details
-            </a>
+            </Link>
           </li>
         </ul>
         <button
@@ -54,24 +54,24 @@ const Navbar = () => {
         <div className="mobile-menu absolute top-[70px] left-0 w-full bg-white p-6 hidden md:hidden">
           <ul className="flex flex-col space-y-4 text-lg">
             <li>
-              <a href="#" className="text-sm">
+              <Link href="#" className="text-sm">
                 Home
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="text-sm">
+              <Link href="#" className="text-sm">
                 Register Land
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="text-sm">
+              <Link href="#" className="text-sm">
                 Transfer Land
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="text-sm">
+              <Link href="#" className="text-sm">
                 Land Details
-              </a>
+              </Link>
             </li>
           </ul>
           <button
