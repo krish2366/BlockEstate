@@ -1,9 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
+import toast from "react-hot-toast";
+
 
 const LoginForm = () => {
 
-    const onHandleSubmit = async(req,res)=>{
-        
+    const [email,setEmail] = useState("")
+    const [password,setPassword] = useState("")
+    
+
+    const onHandleSubmit = async(e)=>{
+      try{
+        console.log(email +" "+ password)
+        e.preventDefault();
+        // const {data} = await axios.post('/api/seller/login',{email,password})
+        // if(data.success){
+        //   setIsSeller(true)
+        //   navigate('/seller')
+        // } else {
+        //   toast.error(data.message)
+        // }
+      } catch(error){
+        toast.error(error.message)
+      }
     }
 
   return (
@@ -28,6 +46,8 @@ const LoginForm = () => {
         <input
           type="email"
           placeholder="Email id"
+          value={email}
+          onChange={(e)=>setEmail(e.target.value)}
           class="bg-transparent text-gray-500 placeholder-gray-500 outline-none text-sm w-full h-full"
           required
         />
@@ -49,6 +69,8 @@ const LoginForm = () => {
         <input
           type="password"
           placeholder="Password"
+          value={password}
+          onChange={(e)=>setPassword(e.target.password)}
           class="bg-transparent text-gray-500 placeholder-gray-500 outline-none text-sm w-full h-full"
           required
         />
