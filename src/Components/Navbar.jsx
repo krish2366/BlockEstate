@@ -5,27 +5,27 @@ const Navbar = () => {
   return (
     <div>
       <nav className="h-[70px] relative w-full px-6 md:px-16 lg:px-24 xl:px-32 flex items-center justify-between z-20 bg-white text-gray-700 shadow-[0px_4px_25px_0px_#0000000D] transition-all">
-        <Link href="#" className="text-3xl font-bold text-gray-800">
+        <Link to="/" className="text-3xl font-bold text-gray-800">
           BlockEstate
         </Link>
         <ul className="md:flex hidden items-center gap-10">
           <li>
-            <Link className="hover:text-gray-500/80 transition" href="/">
+            <Link className="hover:text-gray-500/80 transition" to="/">
               Home
             </Link>
           </li>
           <li>
-            <Link className="hover:text-gray-500/80 transition" href="/registerland">
+            <Link className="hover:text-gray-500/80 transition" to="/registerland">
               Register Land
             </Link>
           </li>
           <li>
-            <Link className="hover:text-gray-500/80 transition" href="transferland">
+            <Link className="hover:text-gray-500/80 transition" to="/transferland">
               Transfer Land
             </Link>
           </li>
           <li>
-            <Link className="hover:text-gray-500/80 transition" href="landdetails">
+            <Link className="hover:text-gray-500/80 transition" to="/landdetails">
               Land Details
             </Link>
           </li>
@@ -54,22 +54,22 @@ const Navbar = () => {
         <div className="mobile-menu absolute top-[70px] left-0 w-full bg-white p-6 hidden md:hidden">
           <ul className="flex flex-col space-y-4 text-lg">
             <li>
-              <Link href="#" className="text-sm">
+              <Link to="#" className="text-sm">
                 Home
               </Link>
             </li>
             <li>
-              <Link href="#" className="text-sm">
+              <Link to="#" className="text-sm">
                 Register Land
               </Link>
             </li>
             <li>
-              <Link href="#" className="text-sm">
+              <Link to="#" className="text-sm">
                 Transfer Land
               </Link>
             </li>
             <li>
-              <Link href="#" className="text-sm">
+              <Link to="#" className="text-sm">
                 Land Details
               </Link>
             </li>

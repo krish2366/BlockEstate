@@ -10,10 +10,9 @@ function App() {
 
   return (
     <>
-      <Navbar/>
 
-      <Toaster />
       <Router>
+        <Toaster />
         <Navbar/>
 
         <Routes>
@@ -23,7 +22,6 @@ function App() {
         </Routes>
       </Router>
 
-      {/* <LoginForm/> */}
     </>
   )
 }
