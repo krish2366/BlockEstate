@@ -4,36 +4,41 @@ import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const SignUp = () => {
-  const [username,setUsername] = useState("");
-  const [ownerWalletAddress,setOwnerWalletAddress] = useState("")
+  const [username, setUsername] = useState("");
+  const [ownerWalletAddress, setOwnerWalletAddress] = useState("");
   const [password, setPassword] = useState("");
-  
+  const [role, setRole] = useState("");
 
   const navigate = useNavigate();
 
   const onHandleSubmit = async (e) => {
     try {
-    //   console.log(username + " " + ownerWalletAddress+" "+password);
+        // console.log(username + " " + ownerWalletAddress+" "+password+" "+role);
       e.preventDefault();
 
-      const {token} = await axios.post('http://localhost:8080/User/register',{username,ownerWalletAddress,password})
-      if(token.data){
-        toast.success("login success")
-        console.log("login success")
+      const { token } = await axios.post(
+        "http://localhost:8080/User/register",
+        { username, ownerWalletAddress, password, role }
+      );
+      if (token.data) {
+        toast.success("login success");
+        console.log("login success");
         navigate("/");
       } else {
-        toast.error("login failed")
-        console.log("login failed")
+        toast.error("login failed");
+        console.log("login failed");
       }
     } catch (error) {
       toast.error(error.message);
     }
-    
   };
 
   return (
     <div className="flex items-center justify-center mt-20">
-      <form onSubmit={onHandleSubmit} className="max-w-96 w-full text-center border border-gray-300/60 rounded-2xl px-8 bg-white">
+      <form
+        onSubmit={onHandleSubmit}
+        className="max-w-96 w-full text-center border border-gray-300/60 rounded-2xl px-8 bg-white"
+      >
         <h1 className="text-gray-900 text-3xl mt-10 font-medium">Sign Up</h1>
         {/* <p className="text-gray-500 text-sm mt-2">Please sign in to continue</p> */}
         <div className="flex items-center w-full mt-10 bg-white border border-gray-300/80 h-12 rounded-full overflow-hidden pl-6 gap-2">
@@ -55,7 +60,7 @@ const SignUp = () => {
           <input
             type="text"
             value={username}
-            onChange={(e)=>setUsername(e.target.value)}
+            onChange={(e) => setUsername(e.target.value)}
             placeholder="user name"
             className="bg-transparent text-gray-500 placeholder-gray-500 outline-none text-sm w-full h-full"
             required
@@ -79,15 +84,31 @@ const SignUp = () => {
               fill="#6B7280"
             />
           </svg>
-          
+
           <input
             type="text"
             value={ownerWalletAddress}
-            onChange={(e)=>setOwnerWalletAddress(e.target.value)}
+            onChange={(e) => setOwnerWalletAddress(e.target.value)}
             placeholder="wallet address"
             className="bg-transparent text-gray-500 placeholder-gray-500 outline-none text-sm w-full h-full"
             required
           />
+        </div>
+
+        <div className="flex items-center mt-6 w-full bg-white border border-gray-300/80 h-12 rounded-full overflow-hidden pl-6 pr-3 gap-2">
+          <select
+            value={role}
+            onChange={(e) => setRole(e.target.value)}
+            className="bg-transparent text-gray-500 outline-none text-sm w-full h-full"
+            required
+          >
+            <option value="" disabled hidden>
+              role
+            </option>
+            <option value="superadmin">Super Admin</option>
+            <option value="registrar">Registrar</option>
+            <option value="user">User</option>
+          </select>
         </div>
 
         <div className="flex items-center mt-6 w-full bg-white border border-gray-300/80 h-12 rounded-full overflow-hidden pl-6 gap-2">
@@ -107,7 +128,7 @@ const SignUp = () => {
             type="password"
             placeholder="Password"
             value={password}
-            onChange={(e)=>setPassword(e.target.value)}
+            onChange={(e) => setPassword(e.target.value)}
             className="bg-transparent text-gray-500 placeholder-gray-500 outline-none text-sm w-full h-full"
             required
           />
@@ -126,7 +147,7 @@ const SignUp = () => {
         </button>
         <p className="text-gray-500 text-sm mt-3 mb-11">
           Already have a account?{" "}
-          <NavLink to="/login" className="text-indigo-500" >
+          <NavLink to="/login" className="text-indigo-500">
             Login
           </NavLink>
         </p>
