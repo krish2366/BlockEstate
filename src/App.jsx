@@ -8,6 +8,11 @@ function App() {
   return (
     <>
       <Navbar/>
+      <Router>
+        <Routes>
+          <Route path='/login' element={<LoginForm/>} />
+        </Routes>
+      </Router>
 
       <LoginForm/>
     </>

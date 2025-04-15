@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
-
   return (
     <div>
       <nav className="h-[70px] relative w-full px-6 md:px-16 lg:px-24 xl:px-32 flex items-center justify-between z-20 bg-white text-gray-700 shadow-[0px_4px_25px_0px_#0000000D] transition-all">
@@ -17,17 +16,17 @@ const Navbar = () => {
           </li>
           <li>
             <a className="hover:text-gray-500/80 transition" href="#">
-              Services
+              Register Land
             </a>
           </li>
           <li>
             <a className="hover:text-gray-500/80 transition" href="#">
-              Portfolio
+              Transfer Land
             </a>
           </li>
           <li>
             <a className="hover:text-gray-500/80 transition" href="#">
-              Pricing
+              Land Details
             </a>
           </li>
         </ul>
@@ -61,17 +60,17 @@ const Navbar = () => {
             </li>
             <li>
               <a href="#" className="text-sm">
-                Services
+                Register Land
               </a>
             </li>
             <li>
               <a href="#" className="text-sm">
-                Portfolio
+                Transfer Land
               </a>
             </li>
             <li>
               <a href="#" className="text-sm">
-                Pricing
+                Land Details
               </a>
             </li>
           </ul>
