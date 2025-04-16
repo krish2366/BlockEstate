@@ -40,22 +40,8 @@ const SignUp = () => {
         className="max-w-96 w-full text-center border border-gray-300/60 rounded-2xl px-8 bg-white"
       >
         <h1 className="text-gray-900 text-3xl mt-10 font-medium">Sign Up</h1>
-        {/* <p className="text-gray-500 text-sm mt-2">Please sign in to continue</p> */}
         <div className="flex items-center w-full mt-10 bg-white border border-gray-300/80 h-12 rounded-full overflow-hidden pl-6 gap-2">
-          {/* <svg
-            width="16"
-            height="11"
-            viewBox="0 0 16 11"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fillRule="evenodd"
-              clipRule="evenodd"
-              d="M0 .55.571 0H15.43l.57.55v9.9l-.571.55H.57L0 10.45zm1.143 1.138V9.9h13.714V1.69l-6.503 4.8h-.697zM13.749 1.1H2.25L8 5.356z"
-              fill="#6B7280"
-            />
-          </svg> */}
+          
           <p>@</p>
           <input
             type="text"
@@ -133,11 +119,6 @@ const SignUp = () => {
             required
           />
         </div>
-        {/* <div className="mt-5 text-left text-indigo-500">
-          <a className="text-sm" href="#">
-            Forgot password?
-          </a>
-        </div> */}
 
         <button
           type="submit"

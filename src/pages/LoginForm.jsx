@@ -2,12 +2,17 @@ import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useAppContext } from "../context/AppContext";
+import { jwtDecode } from "jwt-decode";
+
 
 const LoginForm = () => {
   const [username, setName] = useState("");
   const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
+
+  const { setIsAuthenticated, setUser } = useAppContext();
 
   const onHandleSubmit = async (e) => {
     try {
@@ -19,6 +24,12 @@ const LoginForm = () => {
       if(token.data){
         toast.success("login success")
         console.log("login success")
+        
+        const user = jwtDecode(token.data)
+        console.log(user)
+        setUser(user)
+        setIsAuthenticated(true)
+        
         navigate("/");
       } else {
         toast.error("login failed")
