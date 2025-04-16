@@ -25,7 +25,8 @@ const RegisterLandForm = () => {
     try{
         e.preventDefault();
         console.log("Form Data:", formData);
-        const {data} = await axios.post("http://localhost:8080/Land/RegisterLand",{formData})
+        const data = await axios.post("http://localhost:8080/Land/RegisterLand",formData)
+        console.log(data)
         if(data){
             toast.success("register successful") 
             navigate("/userDetails")
@@ -140,16 +141,14 @@ const RegisterLandForm = () => {
 
           {/* Registration Date */}
           <div>
-            <label className="block text-gray-700 font-semibold mb-1">
-              Registration Date <span className="text-red-500">*</span>
-            </label>
+            <label className="block mb-1 font-medium">Registration Date</label>
             <input
-              type="date"
+              type="datetime-local"
               name="registrationDate"
               value={formData.registrationDate}
               onChange={handleChange}
               required
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full p-2 border rounded-md"
             />
           </div>
         </div>

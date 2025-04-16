@@ -2,17 +2,24 @@ import { useEffect, useState } from 'react';
 import { useAppContext } from '../context/AppContext';
 
 const LandDetails = () => {
-  const { user } = useAppContext();
+  // const { user ,isAuthenticated } = useAppContext();
   const [lands, setLands] = useState([]);
   const [loading, setLoading] = useState(true);
+  const userid = localStorage.getItem("userid")
+  console.log(userid)
 
   useEffect(() => {
+    console.log(userid)
+
+
+
     const fetchLands = async () => {
-      if (!user?.address) return;
+      if (!userid) return;
 
       try {
-        const res = await fetch(`/api/lands?wallet=${user.address}`);
+        const res = await fetch(`http://localhost:8080/User/getLandDetailsById?id=${userid}`);
         const data = await res.json();
+        console.log(data)
         setLands(data);
       } catch (error) {
         console.error('Error fetching lands:', error);
@@ -22,7 +29,7 @@ const LandDetails = () => {
     };
 
     fetchLands();
-  }, [user]);
+  }, []);
 
   if (loading) {
     return <div className="text-center mt-20 text-gray-500">Loading land data...</div>;

@@ -27,6 +27,10 @@ const LoginForm = () => {
         
         const user = jwtDecode(token.data)
         console.log(user)
+        console.log(user.userid)
+
+        localStorage.setItem("userid",user.userid)
+        localStorage.setItem("isAuthenticated", true)
         setUser(user)
         setIsAuthenticated(true)
         
