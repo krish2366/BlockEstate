@@ -26,7 +26,7 @@ const RegisterLandForm = () => {
       console.log("Form Data:", formData);
       const { data } = await axios.post(
         "http://localhost:8080/Land/RegisterLand",
-        { formData }
+        formData 
       );
       if (data) {
         toast.success("register successful");
