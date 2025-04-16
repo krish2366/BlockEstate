@@ -2,12 +2,16 @@ import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useAppContext } from "../context/AppContext";
+
 
 const LoginForm = () => {
   const [username, setName] = useState("");
   const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
+
+  const { setIsAuthenticated, setUser } = useAppContext();
 
   const onHandleSubmit = async (e) => {
     try {
@@ -19,6 +23,8 @@ const LoginForm = () => {
       if(token.data){
         toast.success("login success")
         console.log("login success")
+        setIsAuthenticated(true)
+        setUser(token.data.user)
         navigate("/");
       } else {
         toast.error("login failed")
