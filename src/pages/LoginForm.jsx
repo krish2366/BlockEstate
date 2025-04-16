@@ -5,7 +5,6 @@ import axios from "axios";
 import { useAppContext } from "../context/AppContext";
 import { jwtDecode } from "jwt-decode";
 
-
 const LoginForm = () => {
   const [username, setName] = useState("");
   const [password, setPassword] = useState("");
@@ -19,36 +18,41 @@ const LoginForm = () => {
       // console.log(email + " " + password);
       e.preventDefault();
 
-      const token = await axios.post('http://localhost:8080/User/login',{username,password})
-      console.log(token)
-      if(token.data){
-        toast.success("login success")
-        console.log("login success")
-        
-        const user = jwtDecode(token.data)
-        console.log(user)
-        console.log(user.userid)
+      const token = await axios.post("http://localhost:8080/User/login", {
+        username,
+        password,
+      });
+      console.log(token);
+      if (token.data) {
+        toast.success("login success");
+        console.log("login success");
 
-        localStorage.setItem("userid",user.userid)
-        localStorage.setItem("isAuthenticated", true)
-        setUser(user)
-        setIsAuthenticated(true)
-        
+        const user = jwtDecode(token.data);
+        console.log(user);
+        console.log(user.userid);
+
+        localStorage.setItem("userid", user.userid);
+        localStorage.setItem("isAuthenticated", true);
+        setUser(user);
+        setIsAuthenticated(true);
+
         navigate("/");
       } else {
-        toast.error("login failed")
-        console.log("login failed")
+        toast.error("login failed");
+        console.log("login failed");
       }
     } catch (error) {
-      console.log("error")
+      console.log("error");
       toast.error(error.message);
     }
-    
   };
 
   return (
-    <div className="flex items-center justify-center mt-20">
-      <form onSubmit={onHandleSubmit} className="max-w-96 w-full text-center border border-gray-300/60 rounded-2xl px-8 bg-white">
+    <div className="flex items-center justify-center h-[90vh] pt-10 bg-emerald-200">
+      <form
+        onSubmit={onHandleSubmit}
+        className="max-w-md w-full text-center border border-white/30 backdrop-blur-md bg-white/30 px-8 py-10 rounded-2xl shadow-lg"
+      >
         <h1 className="text-gray-900 text-3xl mt-10 font-medium">Login</h1>
         <p className="text-gray-500 text-sm mt-2">Please sign in to continue</p>
         <div className="flex items-center w-full mt-10 bg-white border border-gray-300/80 h-12 rounded-full overflow-hidden pl-6 gap-2">
@@ -69,7 +73,7 @@ const LoginForm = () => {
           <input
             type="text"
             value={username}
-            onChange={(e)=>setName(e.target.value)}
+            onChange={(e) => setName(e.target.value)}
             placeholder="User name"
             className="bg-transparent text-gray-500 placeholder-gray-500 outline-none text-sm w-full h-full"
             required
@@ -93,7 +97,7 @@ const LoginForm = () => {
             type="password"
             placeholder="Password"
             value={password}
-            onChange={(e)=>setPassword(e.target.value)}
+            onChange={(e) => setPassword(e.target.value)}
             className="bg-transparent text-gray-500 placeholder-gray-500 outline-none text-sm w-full h-full"
             required
           />

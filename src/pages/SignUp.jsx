@@ -34,28 +34,28 @@ const SignUp = () => {
   };
 
   return (
-    <div className="flex items-center justify-center mt-20">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 px-4">
       <form
         onSubmit={onHandleSubmit}
-        className="max-w-96 w-full text-center border border-gray-300/60 rounded-2xl px-8 bg-white"
+        className="max-w-md w-full text-center border border-white/30 backdrop-blur-md bg-white/30 px-8 py-10 rounded-2xl shadow-xl"
       >
-        <h1 className="text-gray-900 text-3xl mt-10 font-medium">Sign Up</h1>
-        <div className="flex items-center w-full mt-10 bg-white border border-gray-300/80 h-12 rounded-full overflow-hidden pl-6 gap-2">
-          
-          <p>@</p>
+        <h1 className="text-gray-900 text-3xl font-semibold">Sign Up</h1>
+  
+        {/* Username */}
+        <div className="flex items-center w-full mt-10 bg-white/60 border border-gray-300/50 h-12 rounded-full overflow-hidden pl-6 gap-2">
+          <span className="text-gray-500">@</span>
           <input
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            placeholder="user name"
-            className="bg-transparent text-gray-500 placeholder-gray-500 outline-none text-sm w-full h-full"
+            placeholder="Username"
+            className="bg-transparent text-gray-700 placeholder-gray-500 outline-none text-sm w-full h-full"
             required
           />
         </div>
-
-        {/* wallet */}
-
-        <div className="flex items-center w-full mt-6 bg-white border border-gray-300/80 h-12 rounded-full overflow-hidden pl-6 gap-2">
+  
+        {/* Wallet Address */}
+        <div className="flex items-center w-full mt-6 bg-white/60 border border-gray-300/50 h-12 rounded-full overflow-hidden pl-6 gap-2">
           <svg
             width="16"
             height="11"
@@ -70,34 +70,35 @@ const SignUp = () => {
               fill="#6B7280"
             />
           </svg>
-
           <input
             type="text"
             value={ownerWalletAddress}
             onChange={(e) => setOwnerWalletAddress(e.target.value)}
-            placeholder="wallet address"
-            className="bg-transparent text-gray-500 placeholder-gray-500 outline-none text-sm w-full h-full"
+            placeholder="Wallet Address"
+            className="bg-transparent text-gray-700 placeholder-gray-500 outline-none text-sm w-full h-full"
             required
           />
         </div>
-
-        <div className="flex items-center mt-6 w-full bg-white border border-gray-300/80 h-12 rounded-full overflow-hidden pl-6 pr-3 gap-2">
+  
+        {/* Role */}
+        <div className="flex items-center mt-6 w-full bg-white/60 border border-gray-300/50 h-12 rounded-full overflow-hidden pl-6 pr-3 gap-2">
           <select
             value={role}
             onChange={(e) => setRole(e.target.value)}
-            className="bg-transparent text-gray-500 outline-none text-sm w-full h-full"
+            className="bg-transparent text-gray-700 placeholder-gray-500 outline-none text-sm w-full h-full"
             required
           >
             <option value="" disabled hidden>
-              role
+              Role
             </option>
             <option value="superadmin">Super Admin</option>
             <option value="registrar">Registrar</option>
             <option value="user">User</option>
           </select>
         </div>
-
-        <div className="flex items-center mt-6 w-full bg-white border border-gray-300/80 h-12 rounded-full overflow-hidden pl-6 gap-2">
+  
+        {/* Password */}
+        <div className="flex items-center mt-6 w-full bg-white/60 border border-gray-300/50 h-12 rounded-full overflow-hidden pl-6 gap-2">
           <svg
             width="13"
             height="17"
@@ -115,26 +116,29 @@ const SignUp = () => {
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="bg-transparent text-gray-500 placeholder-gray-500 outline-none text-sm w-full h-full"
+            className="bg-transparent text-gray-700 placeholder-gray-500 outline-none text-sm w-full h-full"
             required
           />
         </div>
-
+  
+        {/* Submit */}
         <button
           type="submit"
-          className="mt-2 w-full h-11 rounded-full text-white bg-indigo-500 hover:opacity-90 transition-opacity"
+          className="mt-6 w-full h-11 rounded-full text-white bg-indigo-500 hover:bg-indigo-600 transition"
         >
           Sign Up
         </button>
-        <p className="text-gray-500 text-sm mt-3 mb-11">
-          Already have a account?{" "}
-          <NavLink to="/login" className="text-indigo-500">
+  
+        {/* Login redirect */}
+        <p className="text-gray-700 text-sm mt-4">
+          Already have an account?{' '}
+          <NavLink to="/login" className="text-indigo-500 hover:underline">
             Login
           </NavLink>
         </p>
       </form>
     </div>
-  );
+  );  
 };
 
 export default SignUp;
