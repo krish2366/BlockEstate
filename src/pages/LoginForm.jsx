@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const LoginForm = () => {
-  const [email, setEmail] = useState("");
+  const [username, setName] = useState("");
   const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
@@ -14,8 +14,9 @@ const LoginForm = () => {
       // console.log(email + " " + password);
       e.preventDefault();
 
-      const {token} = await axios.post('http://localhost:8080/User/login',{email,password})
-      if(token){
+      const token = await axios.post('http://localhost:8080/User/login',{username,password})
+      console.log(token)
+      if(token.data){
         toast.success("login success")
         console.log("login success")
         navigate("/");
@@ -24,6 +25,7 @@ const LoginForm = () => {
         console.log("login failed")
       }
     } catch (error) {
+      console.log("error")
       toast.error(error.message);
     }
     
@@ -50,10 +52,10 @@ const LoginForm = () => {
             />
           </svg>
           <input
-            type="email"
-            value={email}
-            onChange={(e)=>setEmail(e.target.value)}
-            placeholder="Email id"
+            type="text"
+            value={username}
+            onChange={(e)=>setName(e.target.value)}
+            placeholder="User name"
             className="bg-transparent text-gray-500 placeholder-gray-500 outline-none text-sm w-full h-full"
             required
           />
@@ -95,9 +97,9 @@ const LoginForm = () => {
         </button>
         <p className="text-gray-500 text-sm mt-3 mb-11">
           Don’t have an account?{" "}
-          <a className="text-indigo-500" href="#">
+          <NavLink className="text-indigo-500" to="/signUp">
             Sign up
-          </a>
+          </NavLink>
         </p>
       </form>
     </div>
