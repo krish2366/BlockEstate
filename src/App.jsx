@@ -6,6 +6,7 @@ import Page404 from './pages/Page404'
 import Home from './pages/Home'
 import {Toaster} from "react-hot-toast";
 import SignUp from './pages/SignUp'
+import RegisterLandForm from './pages/RegisterLandForm'
 
 function App() {
 
@@ -21,6 +22,8 @@ function App() {
           <Route path='/login' element={<LoginForm/>} />
           <Route path='*' element={<Page404/>} />
           <Route path='/signUp' element = {<SignUp/>}/>
+          <Route path='/registerland' element={<RegisterLandForm/>}/>
+          <Route path='/userDetails'/>
         </Routes>
       </Router>
 
