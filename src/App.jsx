@@ -26,7 +26,7 @@ function App() {
 
           <Route path='*' element={<Page404/>} />
           <Route path='/registerland' element={<RegisterLandForm/>}/>
-          <Route path='/userDetails'/>
+          <Route path='/userDetails' element={<div>hi</div>} />
         </Routes>
       </Router>
 
