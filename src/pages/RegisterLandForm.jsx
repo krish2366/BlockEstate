@@ -4,8 +4,7 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
 const RegisterLandForm = () => {
-
-    const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     propertyId: "",
@@ -22,20 +21,21 @@ const RegisterLandForm = () => {
   };
 
   const handleSubmit = async (e) => {
-    try{
-        e.preventDefault();
-        console.log("Form Data:", formData);
-        const data = await axios.post("http://localhost:8080/Land/RegisterLand",formData)
-        console.log(data)
-        if(data){
-            toast.success("register successful") 
-            navigate("/userDetails")
-        } else {
-            toast.error("some error occured while registration")
-        }
-
-    } catch(error){
-        toast.error(error.message)
+    try {
+      e.preventDefault();
+      console.log("Form Data:", formData);
+      const { data } = await axios.post(
+        "http://localhost:8080/Land/RegisterLand",
+        { formData }
+      );
+      if (data) {
+        toast.success("register successful");
+        navigate("/userDetails");
+      } else {
+        toast.error("some error occured while registration");
+      }
+    } catch (error) {
+      toast.error(error.message);
     }
   };
 
@@ -166,4 +166,4 @@ const RegisterLandForm = () => {
   );
 };
 
-export default RegisterLandForm
+export default RegisterLandForm;

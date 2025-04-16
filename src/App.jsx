@@ -8,6 +8,7 @@ import {Toaster} from "react-hot-toast";
 import SignUp from './pages/SignUp'
 import LandDetails from './pages/LandDetails'
 import RegisterLandForm from './pages/RegisterLandForm'
+import TransferLandForm from './pages/TransferLandForm'
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
           <Route path='*' element={<Page404/>} />
           <Route path='/registerland' element={<RegisterLandForm/>}/>
           <Route path='/userDetails' element={<div>hi</div>} />
+          <Route path='/transferland' element={<TransferLandForm/>}/>
         </Routes>
       </Router>
 
