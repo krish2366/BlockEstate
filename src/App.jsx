@@ -9,6 +9,7 @@ import SignUp from './pages/SignUp'
 import LandDetails from './pages/LandDetails'
 import RegisterLandForm from './pages/RegisterLandForm'
 import TransferLandForm from './pages/TransferLandForm'
+import LandTransferChain from './pages/LandChainPage'
 import TransferDetails from './pages/TransferDetails'
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
           <Route path='/login' element={<LoginForm/>} />
           <Route path='/signUp' element = {<SignUp/>}/>
           <Route path='/landdetails' element = {<LandDetails/>}/>
+          <Route path='/landchain' element = {<LandTransferChain/>}/>
 
           <Route path='*' element={<Page404/>} />
           <Route path='/registerland' element={<RegisterLandForm/>}/>
