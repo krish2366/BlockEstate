@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const TransferForm = () => {
   const [formData, setFormData] = useState({
@@ -15,22 +16,31 @@ const TransferForm = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const { data } = await axios.post(
-        "http://localhost:8080/Land-transfer/transfer",
-        formData
-      );
-      if (data) {
-        toast.success("Transfer recorded successfully!");
-      } else {
-        toast.error("Failed to submit transfer data.");
-      }
-    } catch (error) {
-      toast.error(`${error.message}`);
+  const navigate = useNavigate();
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  try {
+    const { data } = await axios.post(
+      "http://localhost:8080/Land-transfer/transfer",
+      formData
+    );
+    if (data) {
+      toast.success("Transfer recorded successfully!");
+      navigate(`/Land/getLandDetails/${formData.propertyId}`, {
+        state: {
+          fromAddress: formData.fromAddress,
+          toAddress: formData.toAddress,
+        },
+      });
+    } else {
+      toast.error("Failed to submit transfer data.");
     }
-  };
+  } catch (error) {
+    toast.error(`${error.message}`);
+  }
+};
+
 
   return (
     <div className="min-h-screen bg-gradient-to-r from-green-100 via-green-200 to-green-300 flex items-center justify-center p-4">
