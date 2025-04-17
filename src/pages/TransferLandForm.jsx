@@ -11,6 +11,8 @@ const TransferForm = () => {
     transferTimestamp: "",
   });
 
+  const privateKey = "3843be5dcfe61ece0a43b244fd4f42c6e2ca2abdb9a0f1820f666bb97ebcd273"
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -18,8 +20,8 @@ const TransferForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post(
-        "http://localhost:8080/Land-transfer/transfer",
+      const data = await axios.post(
+        `http://localhost:8080/Land-transfer/transfer?privateKey=${privateKey}`,
         formData
       );
       if (data) {
