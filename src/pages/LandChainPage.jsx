@@ -9,10 +9,9 @@ function LandTransferChain() {
     try {
       const res = await fetch(`http://localhost:8080/Land/getUserByPropertyId?propertyId=${propertyId}`);
       const data = await res.json();
-        console.log(data);
-      if (Array.isArray(data?.ownershipHistory || data?.owners)) {
-        const chain = data.ownershipHistory || data.owners;
-        setOwners(chain);
+        console.log(data[1]);
+      if (Array.isArray(data)) {
+        setOwners(data);
         setError("");
       } else {
         setError("No ownership data found.");
@@ -22,6 +21,7 @@ function LandTransferChain() {
       setError("Error fetching land details.");
       setOwners([]);
     }
+    console.log(owners)
   };
 
   return (
@@ -47,15 +47,17 @@ function LandTransferChain() {
       {error && <p className="text-red-500">{error}</p>}
 
       {owners.length > 0 && (
+        
         <div className="space-y-6">
           {owners.map((owner, index) => (
+            
             <div
               key={index}
               className="relative border-l-4 pl-6 py-4 border-emerald-500 bg-white rounded shadow"
             >
+              {console.log(owner)}
               <p><span className="font-semibold text-gray-700">Owner Name:</span> {owner.username}</p>
               <p><span className="font-semibold text-gray-700">Wallet:</span> {owner.ownerWalletAddress}</p>
-              <p><span className="font-semibold text-gray-700">Roles:</span> {owner.roles.join(', ')}</p>
               <div className="absolute left-[-10px] top-4 w-4 h-4 rounded-full bg-emerald-500 border-2 border-white"></div>
             </div>
           ))}
