@@ -2,7 +2,10 @@ import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
+  const [isAutheticated, setIsAutheticated] = useState(
+    localStorage.getItem("isAuthenticated")
+  );
 
   return (
     <div>
@@ -17,28 +20,48 @@ const Navbar = () => {
             </Link>
           </li>
           <li>
-            <Link className="hover:text-gray-500/80 transition" to="/registerland">
+            <Link
+              className="hover:text-gray-500/80 transition"
+              to="/registerland"
+            >
               Register Land
             </Link>
           </li>
           <li>
-            <Link className="hover:text-gray-500/80 transition" to="/transferland">
+            <Link
+              className="hover:text-gray-500/80 transition"
+              to="/transferland"
+            >
               Transfer Land
             </Link>
           </li>
           <li>
-            <Link className="hover:text-gray-500/80 transition" to="/landdetails">
+            <Link
+              className="hover:text-gray-500/80 transition"
+              to="/landdetails"
+            >
               Land Details
             </Link>
           </li>
         </ul>
-        <button
-          type="button"
-          onClick={() => navigate("/login")}
-          className="bg-white text-gray-600 border border-gray-300 md:inline hidden text-sm hover:bg-gray-50 active:scale-95 transition-all w-24 h-11 rounded-full"
-        >
-          Login
-        </button>
+
+        {isAutheticated ? (
+          <button 
+            className="bg-white text-gray-600 border border-gray-300 md:inline hidden text-sm hover:bg-gray-50 active:scale-95 transition-all w-24 h-11 rounded-full"
+            onClick={() => navigate("/userDetails")}
+          >
+            Profile
+          </button>
+        ) : (
+          <button
+            type="button"
+            onClick={() => navigate("/login")}
+            className="bg-white text-gray-600 border border-gray-300 md:inline hidden text-sm hover:bg-gray-50 active:scale-95 transition-all w-24 h-11 rounded-full"
+          >
+            Login
+          </button>
+        )}
+
         <button
           aria-label="menu-btn"
           type="button"

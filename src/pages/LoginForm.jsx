@@ -32,6 +32,7 @@ const LoginForm = () => {
         console.log(user.userid);
 
         localStorage.setItem("userid", user.userid);
+        localStorage.setItem("ownerWalletAddress", user.ownerWalletAddress);
         localStorage.setItem("isAuthenticated", true);
         setUser(user);
         setIsAuthenticated(true);
